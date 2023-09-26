@@ -136,8 +136,11 @@ void rational_option_a()
 				cout << "\n\t\tRational number R1 = undefine\n";
 			}
 			else
+			{
+				rational1.normalize();
 				cout << "\n\t\tRational number R1 = " << rational1.toString() << "\n";
-
+			}
+				
 			break;
 		case 4:
 
@@ -167,6 +170,7 @@ void rational_option_a()
 			{
 				rational2 = rational1;
 				rational2.negate(rational2);
+				rational2.normalize();
 
 				cout << "\n\t\t-(" << rational1 << ") = " << rational2 << "\n";
 			}

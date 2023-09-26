@@ -389,20 +389,20 @@ void rational_option_b()
 				cout << "\n\t\tR1 == R2 -> (" << rational1 << ") == (" << rational2 << ") : ";
 				rational1 == rational2 ? cout << "true" : cout << "false";
 
-				cout << "\n\t\tR1 != R2 -> (" << rational1 << ") != (" << rational2 << ") : ";
-				rational1 != rational2 ? cout << "true" : cout << "false";
+				cout << "\n\t\tR2 != R1 -> (" << rational2 << ") != (" << rational1 << ") : ";
+				rational2 != rational1 ? cout << "true" : cout << "false";
 
 				cout << "\n\t\tR1 >= R2 -> (" << rational1 << ") >= (" << rational2 << ") : ";
 				rational1 >= rational2 ? cout << "true" : cout << "false";
 
-				cout << "\n\t\tR1  > R2 -> (" << rational1 << ")  > (" << rational2 << ") : ";
-				rational1 > rational2 ? cout << "true" : cout << "false";
+				cout << "\n\t\tR2  > R1 -> (" << rational2 << ")  > (" << rational1 << ") : ";
+				rational2 > rational1 ? cout << "true" : cout << "false";
 
 				cout << "\n\t\tR1 <= R2 -> (" << rational1 << ") <= (" << rational2 << ") : ";
 				rational1 <= rational2 ? cout << "true" : cout << "false";
 
-				cout << "\n\t\tR1  < R2 -> (" << rational1 << ")  < (" << rational2 << ") : ";
-				rational1 < rational2 ? cout << "true\n" : cout << "false\n";
+				cout << "\n\t\tR2  < R1 -> (" << rational2 << ")  < (" << rational1 << ") : ";
+				rational2 < rational1 ? cout << "true\n" : cout << "false\n";
 			}
 
 			break;

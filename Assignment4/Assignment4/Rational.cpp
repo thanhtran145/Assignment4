@@ -28,8 +28,8 @@ Rational::Rational(const Rational& obj)
 {
 	numerator = obj.numerator;
 	denominator = obj.denominator;
-	if (denominator == 0)
-		throw ZeroDenominator(*this); // throw exception
+	//if (denominator == 0)
+	//	throw ZeroDenominator(*this); // throw exception
 }
 
 //***************************** Private Methods ************************//
@@ -113,8 +113,8 @@ void Rational::setNumerator(int newN)
 void Rational::setDenominator(int newD)
 {
 	denominator = newD;
-	if (denominator == 0)
-		throw ZeroDenominator(*this); // throw exception
+	//if (denominator == 0)
+	//	throw ZeroDenominator(*this); // throw exception
 }
 
 //******************************* Overloading Operator **************************//
@@ -127,8 +127,8 @@ const Rational Rational::operator =(const Rational& right)
 	{
 		numerator = right.numerator;
 		denominator = right.denominator;
-		if (denominator == 0)
-			throw ZeroDenominator(*this); // throw exception
+		//if (denominator == 0)
+		//	throw ZeroDenominator(*this); // throw exception
 	}
 
 	return *this;

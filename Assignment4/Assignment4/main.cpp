@@ -17,6 +17,7 @@ using namespace std;
 // Function Prototypes
 void rational_menu();
 void rational_option_a();
+void rational_option_b();
 
 // Main Function
 int main()
@@ -50,6 +51,8 @@ int main()
 	return EXIT_SUCCESS;
 }
 
+//Precondition: NA
+//Postcondition: Display Menu
 void rational_menu()
 {
 	do 
@@ -71,7 +74,7 @@ void rational_menu()
 		switch (toupper(inputChar("\n\t\tOption: ", static_cast<string>("AB0"))))
 		{
 		case 'A': system("cls"); rational_option_a(); break;
-		case 'B': break;
+		case 'B': system("cls"); rational_option_b(); break;
 		case '0': return;
 		default: cout << "\t\tERROR - Invalid option."; break;
 		}
@@ -80,11 +83,16 @@ void rational_menu()
 	} while (true);
 }
 
+//Precondition: NA
+//Postcondition: Display Menu
 void rational_option_a()
 {
 	Rational rational1;
 	Rational rational2;
 	int number = 0;
+
+	int numerator = 0;
+	int denominator = 0;
 
 	do
 	{
@@ -92,14 +100,14 @@ void rational_option_a()
 		cout << "\n\tA> A Rational Number";
 		cout << "\n\t" + string(90, char(205));
 		cout << "\n\t\t1. Enter the numerator";
-		cout << "\n\t\t2. Enter the deminator";
+		cout << "\n\t\t2. Enter the denominator";
 		cout << "\n\t\t3. Display the rational number";
 		cout << "\n\t\t4. Normalize the rational number";
 		cout << "\n\t\t5. Negate the rational number";
 		cout << "\n\t\t6. Add (+) the rational number with a constant";
 		cout << "\n\t\t7. Subtract (-) the rational number with a constant";
 		cout << "\n\t\t8. Multiply (*) the rational number with a constant";
-		cout << "\n\t\t9. Divide(/) the rational number with a constant";
+		cout << "\n\t\t9. Divide (/) the rational number with a constant";
 		
 		cout << "\n\t" + string(90, char(196));
 		cout << "\n\t\t0> return";
@@ -108,126 +116,181 @@ void rational_option_a()
 		switch (inputInteger("\n\t\tOption: ", 0, 9))
 		{
 		case 1: 
-			rational1.setNumerator(inputInteger("\n\t\tEnter an integer for the numerator: "));
+
+			numerator = inputInteger("\n\t\tEnter an integer for the numerator: ");
+
+			rational1.setNumerator(numerator);
 
 			break;
 		case 2: 
 
-			try
-			{
-				int denominator = inputInteger("\n\t\tEnter an integer for the denominator: ");
+			denominator = inputInteger("\n\t\tEnter an integer for the denominator: ");
 
-				// validation
-				if (denominator == 0)
-				{
-					throw Rational::ZeroDenominator();
-				}
+			rational1.setDenominator(denominator);
 
-				rational1.setDenominator(denominator);
-			}
-			catch (Rational::ZeroDenominator)
-			{
-				cout << "\n\t\tEXCEPTIONAL ERROR: Cannot have this Rational number with a zero denominator value.\n";
-			}
-			
 			break;
 		case 3:
 
-			cout << "\n\t\tRational number R1 = " << rational1.toString() << "\n";
+			if (denominator == 0)
+			{
+				cout << "\n\t\tRational number R1 = undefine\n";
+			}
+			else
+				cout << "\n\t\tRational number R1 = " << rational1.toString() << "\n";
 
 			break;
 		case 4:
 
-			rational2 = rational1;
-			rational2.normalize();
-
 			cout << "\n\t\tNormalized rational number R2 (a copy of R1)\n";
-			cout << "\n\t\t" << rational2 << "\n";
+
+			if (denominator == 0)
+			{
+				cout << "\n\t\tundefine\n";
+			}
+			else
+			{
+				rational2 = rational1;
+				rational2.normalize();
+
+				cout << "\n\t\t" << rational2 << "\n";
+			}
 
 			break;
 		case 5:
 
-			rational2 = rational1;
-			rational2.negate(rational2);
-
 			cout << "\n\t\tNormalized rational number R2 (a copy of R1)\n";
-			cout << "\n\t\t-(" << rational1 << ") = " << rational2 << "\n";
+			if (denominator == 0)
+			{
+				cout << "\n\t\tundefine\n";
+			}
+			else
+			{
+				rational2 = rational1;
+				rational2.negate(rational2);
+
+				cout << "\n\t\t-(" << rational1 << ") = " << rational2 << "\n";
+			}
 	
 			break;
 		case 6:
 
-			rational2 = rational1;
-			number = inputInteger("\n\t\tEnter an integer value: ");
+			if (denominator == 0)
+			{
+				cout << "\n\t\tundefine\n";
+			}
+			else
+			{
+				rational2 = rational1;
+				number = inputInteger("\n\t\tEnter an integer value: ");
 
-			rational2 = rational2 + number;
-			rational2.normalize();
+				rational2 = rational2 + number;
+				rational2.normalize();
 
-			cout << "\n\t\tR2 + value";
-			cout << "\n\t\t(" + rational1.toString() + ") + " << number << " = " << rational2 << '\n';
-			
-			rational2 = rational1;
-			rational2 = number + rational2;
-			rational2.normalize();
+				cout << "\n\t\tR2 + value";
+				cout << "\n\t\t(" + rational1.toString() + ") + " << number << " = " << rational2 << '\n';
 
-			cout << "\n\t\tvalue + R2";
-			cout << "\n\t\t" << number << " + (" << rational1 << ") = " << rational2 << '\n';
+				rational2 = rational1;
+				rational2 = number + rational2;
+				rational2.normalize();
 
+				cout << "\n\t\tvalue + R2";
+				cout << "\n\t\t" << number << " + (" << rational1 << ") = " << rational2 << '\n';
+			}
+		
 			break;
 		case 7:
 
-			rational2 = rational1;
-			number = inputInteger("\n\t\tEnter an integer value: ");
+			if (denominator == 0)
+			{
+				cout << "\n\t\tundefine\n";
+			}
+			else
+			{
+				rational2 = rational1;
+				number = inputInteger("\n\t\tEnter an integer value: ");
 
-			rational2 = rational2 - number;
-			rational2.normalize();
+				rational2 = rational2 - number;
+				rational2.normalize();
 
-			cout << "\n\t\tR2 - value";
-			cout << "\n\t\t(" + rational1.toString() + ") - " << number << " = " << rational2 << '\n';
+				cout << "\n\t\tR2 - value";
+				cout << "\n\t\t(" + rational1.toString() + ") - " << number << " = " << rational2 << '\n';
 
-			rational2 = rational1;
-			rational2 = number - rational2;
-			rational2.normalize();
+				rational2 = rational1;
+				rational2 = number - rational2;
+				rational2.normalize();
 
-			cout << "\n\t\tvalue - R2";
-			cout << "\n\t\t" << number << " - (" << rational1 << ") = " << rational2 << '\n';
+				cout << "\n\t\tvalue - R2";
+				cout << "\n\t\t" << number << " - (" << rational1 << ") = " << rational2 << '\n';
+			}
 
 			break;
 		case 8:
 
-			rational2 = rational1;
-			number = inputInteger("\n\t\tEnter an integer value: ");
+			if (denominator == 0)
+			{
+				cout << "\n\t\tundefine\n";
+			}
+			else
+			{
+				rational2 = rational1;
+				number = inputInteger("\n\t\tEnter an integer value: ");
 
-			rational2 = rational2 * number;
-			rational2.normalize();
+				rational2 = rational2 * number;
+				rational2.normalize();
 
-			cout << "\n\t\tR2 * value";
-			cout << "\n\t\t(" + rational1.toString() + ") * " << number << " = " << rational2 << '\n';
+				cout << "\n\t\tR2 * value";
+				cout << "\n\t\t(" + rational1.toString() + ") * " << number << " = " << rational2 << '\n';
 
-			rational2 = rational1;
-			rational2 = number * rational2;
-			rational2.normalize();
+				rational2 = rational1;
+				rational2 = number * rational2;
+				rational2.normalize();
 
-			cout << "\n\t\tvalue * R2";
-			cout << "\n\t\t" << number << " * (" << rational1 << ") = " << rational2 << '\n';
+				cout << "\n\t\tvalue * R2";
+				cout << "\n\t\t" << number << " * (" << rational1 << ") = " << rational2 << '\n';
+			}
 
 			break;
 		case 9:
 
-			rational2 = rational1;
-			number = inputInteger("\n\t\tEnter an integer value: ");
+			if (denominator == 0)
+			{
+				cout << "\n\t\tundefine\n";
+			}
+			else
+			{
+				rational2 = rational1;
+				number = inputInteger("\n\t\tEnter an integer value: ");
 
-			rational2 = rational2 / number;
-			rational2.normalize();
+				if (number != 0)
+				{
+					rational2 = rational2 / number;
+					rational2.normalize();
 
-			cout << "\n\t\tR2 / value";
-			cout << "\n\t\t(" + rational1.toString() + ") / " << number << " = " << rational2 << '\n';
+					cout << "\n\t\tR2 / value";
+					cout << "\n\t\t(" + rational1.toString() + ") / " << number << " = " << rational2 << '\n';
 
-			rational2 = rational1;
-			rational2 = number / rational2;
-			rational2.normalize();
-
-			cout << "\n\t\tvalue / R2";
-			cout << "\n\t\t" << number << " / (" << rational1 << ") = " << rational2 << '\n';
+					rational2 = rational1;
+					rational2 = number / rational2;
+					rational2.normalize();
+				}
+				else
+				{
+					cout << "\n\t\tR2 / value";
+					cout << "\n\t\tundefine\n";
+				}
+				
+				if (numerator == 0)
+				{
+					cout << "\n\t\tvalue / R2";
+					cout << "\n\t\tundefine\n";
+				}
+				else
+				{
+					rational2 = number / rational1;
+					cout << "\n\t\tvalue / R2";
+					cout << "\n\t\t" << number << " / (" << rational1 << ") = " << rational2 << '\n';
+				}
+			}
 
 			break;
 		case 0: return;
@@ -238,4 +301,43 @@ void rational_option_a()
 	} while (true);
 }
 
+//Precondition: NA
+//Postcondition: Display Menu
+void rational_option_b()
+{
+	do
+	{
+		system("cls");
+		cout << "\n\tB> Multiple Rational Numbers";
+		cout << "\n\t" + string(90, char(205));
+		cout << "\n\t\t1. Enter rational number R1";
+		cout << "\n\t\t2. Enter rational number R2";
+		cout << "\n\t\t3. Verify condition operators (==, !=, >=, >, <= and <) of R1 and R2";
+		cout << "\n\t\t4. Evaluate arithmatic operators (+, - , * and /) of R1 and R2";
+		cout << "\n\t\t5. Evaluate (3 * (R1 + R2) / 7) / (R2 - R1 / 9) >= 621/889";
+
+		cout << "\n\t" + string(90, char(196));
+		cout << "\n\t\t0> return";
+		cout << "\n\t" + string(90, char(205));
+
+		switch (inputInteger("\n\t\tOption: ", 0, 9))
+		{
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+
+		case 0: return;
+		default: cout << "\t\tERROR - Invalid option."; break;
+		}
+		cout << "\n";
+		system("pause");
+	} while (true);
+}
 		

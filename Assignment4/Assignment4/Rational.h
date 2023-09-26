@@ -16,26 +16,6 @@ private:
 
 public:
 
-	// ZeroDenominator is used to throw an exception if the denominator is zero.
-	class ZeroDenominator
-	{
-	private:
-		string rational;
-	public:
-		ZeroDenominator()
-		{}
-
-		ZeroDenominator(Rational r)
-		{
-			rational = r.toString();
-		}
-
-		string toString()
-		{
-			return rational;
-		}
-	};
-
 	Rational();
 	Rational(int, int);
 	Rational(const Rational&);
@@ -65,9 +45,14 @@ public:
 	friend Rational operator +(const Rational& obj1, const Rational& obj2);
 	friend Rational operator -(const Rational& obj1, const Rational& obj2);
 
-	
+	friend bool operator !=(const Rational& obj1, const Rational& obj2);
 	friend bool operator ==(const Rational& obj1, const Rational& obj2);
 	friend bool operator <(const Rational& obj1, const Rational& obj2);
+	friend bool operator >(const Rational& obj1, const Rational& obj2);
+
+	friend bool operator >=(const Rational& obj1, const Rational& obj2);
+	friend bool operator <=(const Rational& obj1, const Rational& obj2);
+
 	friend ostream& operator << (ostream& out, Rational obj);
 };
 

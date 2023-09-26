@@ -19,8 +19,6 @@ Rational::Rational(int newN, int newD)
 {
 	numerator = newN;
 	denominator = newD;
-	if (denominator == 0)
-		throw ZeroDenominator(*this); // throw exception
 }
 
 // A copy constructor thats accepts the Rational objects and denominator and throw an exception if the denominator is zero.
@@ -28,8 +26,6 @@ Rational::Rational(const Rational& obj)
 {
 	numerator = obj.numerator;
 	denominator = obj.denominator;
-	//if (denominator == 0)
-	//	throw ZeroDenominator(*this); // throw exception
 }
 
 //***************************** Private Methods ************************//
@@ -113,8 +109,6 @@ void Rational::setNumerator(int newN)
 void Rational::setDenominator(int newD)
 {
 	denominator = newD;
-	//if (denominator == 0)
-	//	throw ZeroDenominator(*this); // throw exception
 }
 
 //******************************* Overloading Operator **************************//
@@ -127,8 +121,6 @@ const Rational Rational::operator =(const Rational& right)
 	{
 		numerator = right.numerator;
 		denominator = right.denominator;
-		//if (denominator == 0)
-		//	throw ZeroDenominator(*this); // throw exception
 	}
 
 	return *this;
@@ -301,6 +293,34 @@ bool operator ==(const Rational& obj1, const Rational& obj2)
 bool operator <(const Rational& obj1, const Rational& obj2)
 {
 	return (obj1.numerator * obj2.denominator) < (obj2.numerator * obj1.denominator);
+}
+
+//PreCondition: 2 Rational objects
+//PostCondition: return a flag which indicate one is greater than another.
+bool operator >(const Rational& obj1, const Rational& obj2)
+{
+	return (obj1.numerator * obj2.denominator) > (obj2.numerator * obj1.denominator);
+}
+
+//PreCondition: 2 Rational objects
+//PostCondition: return a flag which indicate one is greater or equal to than another.
+bool operator >=(const Rational& obj1, const Rational& obj2)
+{
+	return (obj1.numerator * obj2.denominator) >= (obj2.numerator * obj1.denominator);
+}
+
+//PreCondition: 2 Rational objects
+//PostCondition: return a flag which indicate one is greater or equal to than another.
+bool operator <=(const Rational& obj1, const Rational& obj2)
+{
+	return (obj1.numerator * obj2.denominator) <= (obj2.numerator * obj1.denominator);
+}
+
+//PreCondition: 2 Rational objects
+//PostCondition: return a flag which indicate one different from another.
+bool operator !=(const Rational& obj1, const Rational& obj2)
+{
+	return (obj1.numerator * obj2.denominator) != (obj2.numerator * obj1.denominator);
 }
 
 //PreCondition: a ostream object and a Rational object

@@ -87,6 +87,7 @@ void rational_menu()
 //Postcondition: Display Menu
 void rational_option_a()
 {
+	// Initialization
 	Rational rational1;
 	Rational rational2;
 	int number = 0;
@@ -94,6 +95,7 @@ void rational_option_a()
 	int numerator = 0;
 	int denominator = 0;
 
+	// Menu
 	do
 	{
 		system("cls");
@@ -131,7 +133,7 @@ void rational_option_a()
 			break;
 		case 3:
 
-			if (denominator == 0)
+			if (denominator == 0) // Validation 
 			{
 				cout << "\n\t\tRational number R1 = undefine\n";
 			}
@@ -145,7 +147,7 @@ void rational_option_a()
 
 			cout << "\n\t\tNormalized rational number R2 (a copy of R1)\n";
 
-			if (denominator == 0)
+			if (denominator == 0) // Validation 
 			{
 				cout << "\n\t\tundefine\n";
 			}
@@ -161,7 +163,7 @@ void rational_option_a()
 		case 5:
 
 			cout << "\n\t\tNegated rational number R2 (a copy of R1)\n";
-			if (denominator == 0)
+			if (denominator == 0) // Validation 
 			{
 				cout << "\n\t\tundefine\n";
 			}
@@ -177,7 +179,7 @@ void rational_option_a()
 			break;
 		case 6:
 
-			if (denominator == 0)
+			if (denominator == 0) // Validation 
 			{
 				cout << "\n\t\tundefine\n";
 			}
@@ -203,7 +205,7 @@ void rational_option_a()
 			break;
 		case 7:
 
-			if (denominator == 0)
+			if (denominator == 0) // Validation 
 			{
 				cout << "\n\t\tundefine\n";
 			}
@@ -229,7 +231,7 @@ void rational_option_a()
 			break;
 		case 8:
 
-			if (denominator == 0)
+			if (denominator == 0) // Validation 
 			{
 				cout << "\n\t\tundefine\n";
 			}
@@ -255,7 +257,7 @@ void rational_option_a()
 			break;
 		case 9:
 
-			if (denominator == 0)
+			if (denominator == 0) // Validation 
 			{
 				cout << "\n\t\tundefine\n";
 			}
@@ -412,17 +414,19 @@ void rational_option_b()
 			{
 				cout << "\n\t\tundefine\n";
 			}
-
-			cout << "\n\n\t\tAddition    : R1 + R2 -> " << rational1 << " + " << rational2 << " = " << rational1 + rational2;
-			cout << "\n\n\t\tSubtraction : R1 + R2 -> " << rational1 << " - " << rational2 << " = " << rational1 - rational2;
-			cout << "\n\n\t\tMutiplcation: R1 + R2 -> " << rational1 << " * " << rational2 << " = " << rational1 * rational2;
-
-			if (rational1.getNumerator() == 0 || rational2.getNumerator() == 0)
-			{
-				cout << "\n\n\t\tDivision    : R1 + R2 -> " << rational1 << " * " << rational2 << " = undefine\n";
-			}
 			else
-				cout << "\n\n\t\tMutiplcation: R1 + R2 -> " << rational1 << " / " << rational2 << " = " << rational1 / rational2;
+			{
+				cout << "\n\t\tAddition    : R1 + R2 -> " << rational1 << " + " << rational2 << " = " << rational1 + rational2;
+				cout << "\n\t\tSubtraction : R1 + R2 -> " << rational1 << " - " << rational2 << " = " << rational1 - rational2;
+				cout << "\n\t\tMutiplcation: R1 + R2 -> " << rational1 << " * " << rational2 << " = " << rational1 * rational2;
+
+				if (rational1.getNumerator() == 0 || rational2.getNumerator() == 0)
+				{
+					cout << "\n\t\tDivision    : R1 + R2 -> " << rational1 << " * " << rational2 << " = undefine\n";
+				}
+				else
+					cout << "\n\t\tDivision    : R1 + R2 -> " << rational1 << " / " << rational2 << " = " << rational1 / rational2 << "\n";
+			}
 				
 			break;
 		case 5:
@@ -431,57 +435,59 @@ void rational_option_b()
 			{
 				cout << "\n\t\tundefine\n";
 			}
-
-			rational3.setNumerator(621);
-			rational3.setDenominator(889);
-
-			//to display the numbers before calculations
-			cout << "\n\t\tR1= : " << rational1.toString() << "\n";
-			cout << "\t\tR2= : " << rational2.toString() << "\n";
-			cout << "\t\tR3= : " << rational3.toString() << "\n";
-
-			//rational5 = (3 * (rational1 + rational2) / 7) / (rational2 - rational1 / 9);
-			// 
-			//step 1
-
-			rational4 = rational1 + rational2;
-			rational5 = rational1 / 9;
-
-			cout << "\n\t\tEvaluating expression...";
-			cout << "\n\t\t\t (3 * (R1 + R2) / 7) / (R2 - R1 / 9) >= 621/889 ?";
-			cout << "\n\t\tStep #1: (3 * (" << rational4.toString() << ") / 7) / ( " << rational2.toString()
-				<< " - " << rational5.toString() << ")) >= 621/889 ?" << "\n";
-
-			//step 2
-			rational4 = 3 * rational4;
-			rational5 = rational2 - rational5;
-
-			cout << "\t\tStep #2: ((" << rational4.toString() << ") / 7) / ( " << rational5.toString()
-				<< ")) >= 621/889 ?" << "\n";
-
-			//step 3
-			rational4 = rational4 / 7;
-
-			cout << "\t\tStep #3: (" << rational4.toString() << ") / ( " << rational5.toString()
-				<< " >= 621/889 ?" << "\n";
-
-			//step 4
-			rational5 = rational4 / rational5;
-
-			cout << "\t\tStep #4: (" << rational5.toString() << ") >= 621/889 ?" << "\n";
-
-			//final simplist forms before they are compared. Will also clean the negative signs to the correct position.
-			rational5.normalize();
-			rational3.normalize();
-			//step5
-			if (rational5 > rational3)
+			else
 			{
+				rational3.setNumerator(621);
+				rational3.setDenominator(889);
 
-				cout << "\t\tstep #5: true" << "\n";
-			}
-			else if (rational5 < rational3 || rational5 == rational3)
-			{
-				cout << "\t\tstep #5: false" << "\n";
+				//to display the numbers before calculations
+				cout << "\n\t\tR1 = : " << rational1.toString() << "\n";
+				cout << "\t\tR2 = : " << rational2.toString() << "\n";
+				cout << "\t\tR3 = : " << rational3.toString() << "\n";
+
+				//rational5 = (3 * (rational1 + rational2) / 7) / (rational2 - rational1 / 9);
+				// 
+				//step 1
+
+				rational4 = rational1 + rational2;
+				rational5 = rational1 / 9;
+
+				cout << "\n\t\tEvaluating expression...";
+				cout << "\n\t\t\t (3 * (R1 + R2) / 7) / (R2 - R1 / 9) >= 621/889 ?";
+				cout << "\n\t\tStep #1: (3 * (" << rational4.toString() << ") / 7) / ( " << rational2.toString()
+					<< " - " << rational5.toString() << ")) >= 621/889 ?" << "\n";
+
+				//step 2
+				rational4 = 3 * rational4;
+				rational5 = rational2 - rational5;
+
+				cout << "\t\tStep #2: ((" << rational4.toString() << ") / 7) / ( " << rational5.toString()
+					<< ")) >= 621/889 ?" << "\n";
+
+				//step 3
+				rational4 = rational4 / 7;
+
+				cout << "\t\tStep #3: (" << rational4.toString() << ") / ( " << rational5.toString()
+					<< " >= 621/889 ?" << "\n";
+
+				//step 4
+				rational5 = rational4 / rational5;
+
+				cout << "\t\tStep #4: (" << rational5.toString() << ") >= 621/889 ?" << "\n";
+
+				//final simplist forms before they are compared. Will also clean the negative signs to the correct position.
+				rational5.normalize();
+				rational3.normalize();
+				//step5
+				if (rational5 > rational3)
+				{
+
+					cout << "\t\tstep #5: true" << "\n";
+				}
+				else if (rational5 < rational3 || rational5 == rational3)
+				{
+					cout << "\t\tstep #5: false" << "\n";
+				}
 			}
 
 			break;
